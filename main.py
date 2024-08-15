@@ -221,7 +221,7 @@ def main():
     parser.add_argument('-x', type=str, required=False, help='flush the ip address information cache and export its contents to a CSV file')
     parser.add_argument('-mr', type=str, required=False, help='flag to produce multiple html report documents')
     parser.add_argument('-r', type=int, required=False, default=10, help='override the default refresh rate between cycles')
-    parser.add_argument('-sp', type=str, help='perform a single connection sweet and terminate once complete')
+    parser.add_argument('-sp', type=str, help='perform a single connection sweep and terminate once complete')
     args = parser.parse_args()
 
     # perform a flush on the IP_AddressInfo cache
