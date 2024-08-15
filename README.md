@@ -18,35 +18,35 @@ pip install keyboard psutil requests ipaddress
 
 To invoke Netmonitor snapshot in a commercial setting. You may invoke it using the form where -t implies a token exists for API access from a third party supplier (example: ipinfo.io) for geolocation data requests.
 
-'''
+```
 python main.py -t XXXXXXXXXXXXXX
-'''
+```
 
 The optional -f argument exists where a token exists but a non-commercial context exists to comply with the requirements of third party supply chain vendors. That is to kindly comply with their licensing models.
 
-'''
+```
 python main.py -t XXXXXXXXXXXXXX -f true
-'''
+```
 
 In order to minimise API requests Netmonitor Snapshot adopts a local disk cache to store lookup records for a maximum of 3-days before a forced update takes place. This minimises the load on third party suppliers and results in the runtime consistently becoming faster the longer the process time of the application increases.
 
 To incur a pause between cycle times, the -m argument specifies the number of minutes to wait before the process resumes into sequential cycles.
 
-'''
+```
 python main.py -m 3
-'''
+```
 
 The -mr argument may be used to produce multiple reports and prevent the singleton report being overwritten.
 
-'''
+```
 python main.py -mr true
-'''
+```
 
 To perform a single pass and obtain a single report, the -sp argument exists and maybe used via the form:
 
-'''
+```
 python main.py -sp true
-'''
+```
 
 ## List of Arguments
 
