@@ -265,7 +265,7 @@ def main():
         # ran our script before, we may have cache data available which reduces
         # the load on our third party suppliers 
         # 
-        # each record is stored for q_query_days before forced update
+        # each record is stored for g_requery_in_days before forced update
         info_list = {}
         if os.path.isfile('info_cache'):
             try:
