@@ -338,7 +338,7 @@ def main():
         if g_quit_flag or args.sp:
             break
 
-        # terminate or sleep depending on CL flag
+        # length of sleep depending on CL flag
         if args.m:
             print("repeating the process in "+ str(args.m) +" minutes")
             time.sleep(args.m*60)
