@@ -253,7 +253,7 @@ def main():
     g_refresh_interval = 10 if not args.r else args.r
 
     print("NLabs.Studio Netmonitor Snapshot Report Writer")
-    print("CTRL+Q will terminate the process and return you to the command line prompt")
+    print("CTRL+Q will terminate the process and return you to the command line prompt\n")
     time.sleep(5)
 
     while not g_quit_flag:
@@ -324,7 +324,7 @@ def main():
                 info_list[raddr] = IP_AddressInfo(data_t['ip'], data_t['hostname'], data_t['city'], data_t['region'], data_t['country'], data_t['loc'])
 
             # some console noise - basic response
-            print("-> "+ str(conn_list[raddr]))
+            print('-> '+ str(conn_list[raddr]), end='\r')
 
         # serialise the cache data to disk
         with open('info_cache', 'wb') as data_t:
@@ -332,7 +332,7 @@ def main():
 
         # produce a readable report on active connections list
         ReportWriter.write(conn_list, info_list, mr)
-        print("report generated - check localised directory for html document")
+        print('report generated - check localised directory for html document', end='\r')
 
         # quit if triggered
         if g_quit_flag or args.sp:
@@ -340,7 +340,7 @@ def main():
 
         # length of sleep depending on CL flag
         if args.m:
-            print("repeating the process in "+ str(args.m) +" minutes")
+            print('repeating the process in '+ str(args.m) +' minutes', end='\r')
             time.sleep(args.m*60)
         else:
             time.sleep(g_refresh_interval)
