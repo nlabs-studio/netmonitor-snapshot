@@ -144,7 +144,7 @@ class ReportWriter:
         f.write('<th align="left">City</th>')
         f.write('<th align="left">Region</th>')
         f.write('<th align="left">Country</th>')
-        f.write('<th align="left">Long &amp; Lat</th>')
+        f.write('<th align="left">Lat &amp; Long</th>')
         f.write('<th align="left">Hostname</th>')        
         f.write("</tr>")
 
