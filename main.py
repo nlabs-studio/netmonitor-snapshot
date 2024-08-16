@@ -188,7 +188,7 @@ class SocketConnection:
         self.conn_status = status
         self.log_time =time.time()
     def __str__(self):
-        return self.conn_status +' '+ self.local_ip + ':' + str(self.local_port) +' '+ self.remote_ip + ':' + str(self.remote_port)
+        return self.conn_status +' '+ self.local_ip + ':' + str(self.local_port) +' '+ self.remote_ip + ':' + str(self.remote_port) +'           '
     def connectionType(self):
         return self.conn_type
     def isExternal(self):
