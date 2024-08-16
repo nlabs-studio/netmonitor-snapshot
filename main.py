@@ -188,7 +188,7 @@ class SocketConnection:
         self.conn_status = status
         self.log_time =time.time()
     def __str__(self):
-        return self.conn_status +"\t"+ self.local_ip + ':' + str(self.local_port) +"\t"+ self.remote_ip + ':' + str(self.remote_port)
+        return self.conn_status +' '+ self.local_ip + ':' + str(self.local_port) +' '+ self.remote_ip + ':' + str(self.remote_port)
     def connectionType(self):
         return self.conn_type
     def isExternal(self):
@@ -337,7 +337,7 @@ def main():
 
         # produce a readable report on active connections list
         ReportWriter.write(conn_list, info_list, mr)
-        print('report generated - check localised directory for html document', end='\r')
+        print('report produced with '+ str(len(conn_list)) +' connections and '+ str(len(info_list)) +' cached entries')
 
         # quit if triggered
         if g_quit_flag or args.sp:
@@ -345,7 +345,7 @@ def main():
 
         # length of sleep depending on CL flag
         if args.m:
-            print('repeating the process in '+ str(args.m) +' minutes', end='\r')
+            print('repeating the process in '+ str(args.m) +' minutes')
             time.sleep(args.m*60)
         else:
             time.sleep(g_refresh_interval)
