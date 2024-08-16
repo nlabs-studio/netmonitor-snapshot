@@ -304,24 +304,29 @@ def main():
                 # fetch geolocation data
                 data_t = NetworkUtils.get_geolocation(c.raddr.ip, '' if not args.t else args.t, not nc)
 
-                # third party fetch failed... init some defaults
-                if data_t == None:
-                    data_t = {}
-                    data_t['ip'] = conn_list[raddr].remoteIP()
-                    data_t['city'] = data_t['region'] = data_t['country'] = '*'
+                # if the third party supplier failed but we have a past 
+                # record then we skip overwritting the cached entry
+                fallback_on_past_record = data_t == None and requery
+                if not fallback_on_past_record:
 
-                # check hostname is available from third party, if not attempt to query it using a local socket
-                if 'hostname' not in data_t:
-                    data_t['hostname'] = NetworkUtils.reverse_dns(c.raddr.ip)
-                    if data_t['hostname'] == None:
-                        data_t['hostname'] = 'NA'
+                    # third party fetch failed... init some defaults
+                    if data_t == None:
+                        data_t = {}
+                        data_t['ip'] = conn_list[raddr].remoteIP()
+                        data_t['city'] = data_t['region'] = data_t['country'] = '*'
 
-                # if longitude/latitude are not available, flag as '*'
-                if 'loc' not in data_t:
-                    data_t['loc'] = '*'
+                    # check hostname is available from third party, if not attempt to query it using a local socket
+                    if 'hostname' not in data_t:
+                        data_t['hostname'] = NetworkUtils.reverse_dns(c.raddr.ip)
+                        if data_t['hostname'] == None:
+                            data_t['hostname'] = 'NA'
 
-                # cache the geolocation data record
-                info_list[raddr] = IP_AddressInfo(data_t['ip'], data_t['hostname'], data_t['city'], data_t['region'], data_t['country'], data_t['loc'])
+                    # if longitude/latitude are not available, flag as '*'
+                    if 'loc' not in data_t:
+                        data_t['loc'] = '*'
+
+                    # cache the geolocation data record
+                    info_list[raddr] = IP_AddressInfo(data_t['ip'], data_t['hostname'], data_t['city'], data_t['region'], data_t['country'], data_t['loc'])
 
             # some console noise - basic response
             print('-> '+ str(conn_list[raddr]), end='\r')
